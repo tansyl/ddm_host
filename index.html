@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta name="viewport" content="width=device-width,  height=device-height, initial-scale=1.0, user-scalable=no">
+
+<head>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="stylesheet" type="text/css" href="css/slidePage.min.css">
+  <link rel="stylesheet" href="/css/animate.min.css">
+
+
+  <script src="//d3js.org/d3.v4.min.js"></script>
+  <script src="//d3js.org/topojson.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <script src="https://d3js.org/d3-array.v1.min.js"></script>
+  <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="https://unpkg.com/mathjs/dist/math.min.js"></script>
+  <script src="//d3js.org/d3-tile.v0.0.min.js"></script>
+  <script type="text/javascript" src="/css/slidePage.min.js"></script>
+
+  <style type="text/css">
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #000000;
+    }
+  </style>
+
+
+  <title>Where can you live your life in New York?</title>
+  
+</head>
+
+
+<body ontouchstart="">
+  <div class="slide-container" id="slidePage-container">
+    <div class="slide-page page1">
+        </p>
+        </p>
+        </p>
+        </p>
+        </p>
+        <div><h1>Where can you <br>live your life in New York?</h1></div>
+        </p>
+        <div>
+            <h3>
+            As a newcomer in New York, you are planning to find an affordable apartment in the metropolitan 
+            area. 
+            </p>What choices of neighborhood do you have with your budget?                   
+            </h3>
+            </p>
+            <h6>
+              Created by <a href="https://github.mit.edu/6894-sp19/dandanmian/" style="color:#FFFFFF;" target="_blank">Dandanmian</a>
+            <br><a href="https://docs.google.com/presentation/d/1aGhZplcTOjgYDuX9HWYKI2c0lGFC3pnIO_6l4FRwuj0/edit?usp=sharing" style="color:#FFFFFF;" target="_blank">How it is Made</a>
+            <br><a href="/about.html" style="color:#FFFFFF;" target="_blank">About</a>
+            </h6>
+      </div>
+    </div>
+
+
+    <div class="slide-page page2">
+      <div class="grid-container2">
+        <div class="item2">
+            <div class="introvertical">
+              <h4 class="intro">
+              Start by telling us your work location.
+              </h4>
+            </div>
+            <div class="introvertical">
+              <button id='selectPt' class="rcorners1">
+                <p style="color:rgba(255,255,255,0.5);">Click me to place the marker</p>
+              </button>
+            </div>
+            <div class="introvertical">
+              <svg id="legend" class="legends1"></svg>
+            </div>
+            <div class="introvertical">
+              <svg id="legendtext" class="legendtext"></svg>
+            </div>
+            
+            
+            
+          </div>
+        <div id="histogram" class="item3 chart">
+          <h4>
+            Summary of Rent Level by Distance  
+          </h4>
+          <div class="chart">
+            <!-- <p class="before_plot">choose work location to plot hisgram</p></center> -->
+            <svg id="hist_eg" class="diagram"></svg>
+          </div>
+        </div>
+        <div id="scatterplot" class="item6 chart">
+          <h4>
+            Distance and Median Gross Rent distribution
+          </h4>
+          <div class="chart">
+            <!-- <p class="before_plot">choose work location to plot scatter</p></center> -->
+            <svg id="scatter_eg" class="diagram"></svg>
+          </div>
+        </div>
+        <div id="mapcontainer" class="item4">
+          <svg id="canvas" width="100%" height="100%"></svg>
+
+        </div> 
+      </div>
+    </div>
+
+
+  <script type="text/javascript" src="js/slidePage.min.js"></script>
+  <script type="text/javascript">
+    var slide = new slidePage()
+  </script>
+
+<!-- start map generation -->
+<script src="js/map.js"></script>
+
+
+</body>
+

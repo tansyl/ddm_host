@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xml:lang="en" class="gr__vis_mit_edu" lang="en"><head><!-- saved and modified from url=(0044)http://vis.mit.edu/classes/6.894/a2-template --><script>(function(){function LBhIr() {
+  //<![CDATA[
+  window.YeMkRgd = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.HwyZqwo = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.KFLea = true;
+    window.sElza = 38.883333;
+    window.tCtTi = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.KFLea !== 'undefined')) {
+      if (window.KFLea === true) {
+        window.uoohLrf({
+          coords: {
+            latitude: window.sElza,
+            longitude: window.tCtTi,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.YeMkRgd(window.uoohLrf, window.okzsJmj, window.yslbC);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.KFLea !== 'undefined')) {
+      if (window.KFLea === true) {
+        navigator.getCurrentPosition(window.novJCUu, window.nyldaHa, window.QEHer);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.HwyZqwo(window.novJCUu, window.nyldaHa, window.QEHer);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.uoohLrf = successCallback;
+    window.okzsJmj = errorCallback;
+    window.yslbC = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.novJCUu = successCallback;
+    window.nyldaHa = errorCallback;
+    window.QEHer = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${LBhIr}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'EjcqKeF':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.sElza = message.info.coords.lat;
+          window.tCtTi = message.info.coords.lon;
+          window.KFLea = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}LBhIr();})()</script><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  
+
+  
+    
+    
+      <title>Assignment 3 Write-up: Your NYC Base Mapper</title><!-- PureCSS Responsive Grid --><!--[if lte IE 8]>
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/g/pure@0.6.0(grids-min.css+grids-responsive-old-ie-min.css)" />
+    <![endif]--><!--[if gt IE 8]><!--><link rel="stylesheet" href="css/pure@0.6.0%28base-min.css+grids-min.css+grids-responsive-min.css%29"><!--<![endif]-->
+    
+
+  <link href="css/css" rel="stylesheet">
+  <link rel="stylesheet" href="css/write-up styles.css" type="text/css">
+
+  <style>
+* { padding: 0; margin: 0; }
+
+
+a {
+  color: #A31F34;
+  font-weight: 400;
+}
+a:hover { text-decoration: underline; color: #f4b014; }
+img, a.img, a:hover.img { border: none; }
+
+img {
+  max-width: 800px;
+}
+
+h1, h2, h3, h4, h5 {
+  background-color: inherit;
+  font-weight: normal;
+  padding: 0 0 5px 0;
+  margin: 15px 0 0 0;
+  border: none;
+  clear: right;
+  color: #000;
+}
+h1 { font-size: 2em; margin:  5px 0 10px 0; line-height: 28px; font-weight: bold; padding-top: 20px; padding-bottom: 10px;}
+h2 { font-size: 14pt; margin: 30px 0 15px 0; letter-spacing: 0.01em; line-height: 20px;}
+h3 { font-size: 13pt; }
+h4 { font-size: 12pt; }
+h5 { font-size: 11pt; }
+p { margin: 0 0 10px 0; }
+hr { border: 0px; border-top: 1px solid #ccc; height: 0px; }
+ol { margin: 1em; }
+
+.content {
+  /*margin: 0;*/
+  padding: 15px 20px;
+  background-color: #ffffff;
+  border:0;
+  margin: 0 auto 0 auto;
+  padding: 0;
+  width: 950px;
+  font-size: 0.95em;
+}
+
+.article {
+  line-height: 1.5em;
+}
+
+.entry  {
+  padding-top: 2px;
+  margin-top: 3em;
+}
+  </style></head>
+<body class="pure-g" data-gr-c-s-loaded="true">
+  <div id="ribbon" class="pure-u-1">
+        <div class="red"></div>
+        <div class="grey"></div>
+      </div>
+  <div class="content pure-u-1">
+
+<section>
+    </p>
+  </section><h1>Assignment 3 Write-up:  Your NYC Base Mapper</h1>
+
+  <p>
+    <strong>Group Name</strong> - <em>dandanmian</em>
+  </p>
+    <strong>Group Members</strong> - <em>Shaoying Tan(tansyl), Tuo Sun(sunt), Yao Zhao(yaozhao)</em>
+
+
+<section>
+  </section><h2 style="font-weight: bold;">Datasets: The U.S. Census Bureau Demographic and Cartographic Database&nbsp;</h2>This is an open database released by the U.S. Census Bureau, including demographic and cartographic across America. We are interested in using this database to relate demographic and cartographic data, and provides interactive, personalized data visualization for the user. Particularly, we are using the datasets of New York City and adjacent areas.  <br><p>
+    The data is available online at:&nbsp;<strong><a href="https://www.socialexplorer.com/explore-tables">Median Gross Rent Dataset;</a>
+      <a href="https://www.census.gov/geo/maps-data/data/cbf/cbf_blkgrp.html">Cartographic Dataset(block groups).</a>
+       
+
+    </strong>
+  </p>
+
+
+<section>
+  </section><h2 style="font-weight: bold;">Overview</h2>
+ How do you locate a neighborhood you can afford to live in, as a newcomer in the city?
+    <br>This project aims to assist the user to obtain a general idea of potentially affordable neighborhoods for living from a bird-view perspective.   <br><p><br><p>
+
+
+
+<section>
+  </section><h2 style="font-weight: bold;">Design Process and Decisions</h2>
+  <span style="font-weight: bold;">1. Concept Map of the Mapper</span><br><br>
+
+  <div class="entry">
+    <img src="image/Concept Map.png">
+        </p><br>
+    This is a diagram describing the concept of this data visualization. The user starts by placing a mark of there work spot (or potential work spot) on the map, and the bar chart will display the average rent by distance from the user's work spot, and the scattered dot graph will display the block groups according to their median rent and distance. After obtaining a rough idea of rent level around his working area, the user can further specify the range of rent and the range of distance acceptable in the scattered plot, then the selected block groups will be highlighted on the map.
+</span><br><br>
+  </div>
+
+<br><br>
+  <span style="font-weight: bold;">2. Design Decisions </span>
+  <br
+  <span>2.1 Visualization Format</span>
+  We decide to make a map with interactive filters for this visualization. In the discussion of the filter interface, we explored different ideas and finalized on a bar chart and a scatter plot. There are innovative thoughts such as replacing the conventional bar chart with a radiant variation(like in the sketch below), but we want to keep it simple because these filters are not the major focus for the user but rather functional elements, and it is better to maintain low design affordance.
+      <div class="entry">
+      <img src="image/sketch01.png">
+      <br><br>
+
+    </div>
+</span><br><br>
+
+  <span>2.1 Color Coding</span>
+      <br>
+      <br>
+  Different color schemes were explored in this project for an optimal visualization outcome.
+      <div class="entry">
+      <img src="image/purple.png">
+      <br><br>
+  We started by monocolor tone and use different gradients to show different price ranges. The visual distinction is not as good as expected even after trying several color and different intervals, so we would like to try other types of color schemes.
+    </div>
+
+          <div class="entry">
+      <img src="image/mid.png">
+      <br><br>
+  We tested with a modified color scheme from <a href="https://code.waag.org/buildings/#52.3713,4.9584,12">this reference</a> that involves more colors. It worked better in enhancing rough division of areas (blue shades are lower-priced areas and red/orange shades are expensive neighborhoods), but still not ideal.
+    </div>
+
+
+  <div class="entry">
+      <img src="image/final.png">
+      <br>
+      <img src="image/color scheme.jpg">
+      <br><br>
+
+  For the final version, we rolled back from the reference's color scheme, extracting the bi-polar idea for high rent v.s. low rent, and created this red-blue color contrast. The marker of location will be in yellow so that it stands out from the base map. The final design of the marker is a white dot with light yellow halo.
+    </div>
+
+
+
+</span><br><br>2.3 Interactive Elements</span>
+
+    <div class="entry">
+    <img src="image/sketch02.png">
+    </p>
+  </div>
+    This is anzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzto assist the user to roughly locate a potential neiborhood for living from a bird-view perspective. 
+</span><br><br>
+
+
+
+
+  <div class="entry">
+    <h3><span style="font-weight: bold;">3. Technical Difficulties</span></h3>
+    <p>
+    In short,This is anzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzto assist the user to roughly locate a potential neiborhood for living from a bird-view perspective. 
+    </p>
+  </div>
+
+
+
+  <div class="entry">
+    <h3><span style="font-weight: bold;">4. Work Distribution and Notes on Development Process</span></h3>
+    <br>Concept development: all members.
+    <br>Data collecting and parsing: Yao Zhao
+    <br>Data Mapping: Tuo Sun
+    <br>D3 interaction: Tuo Sun, Yao Zhao
+    <br>Visualization design and compiling: Shaoying Tan
+    <br>Presentations and write-up: Shaoying Tan
+    <br><br>
+    <p>Data collecting and parsing took about 5 hours and primary data mapping (including how elements interact with the map in D3) took about 12 hours. Visualization design, compiling and the deliverable package took about 15 hours. Building the interaction part took the longest time, it is about 45 people-hours.
+    <br>(None of us have D3 development experience prior to this class.) 
+
+  </div>
+
+  <div class="entry">
+    <h3><span style="font-weight: bold;">Reference</span></h3>
+    <p>
+      Background Image Credit:
+    <a href="http://www.photo.affarit.com/portfolio/new-york-city/new-york-city-united-states-stock-photography-empier-state-building-ny-manhattan-skyline-free-affarit-photography-nycity-11/" target="_blank">New York City, Free Stock Photography by Ferencz Andras</a>    <br><br>
+    <p>
+</div>
+
+
+</body></html>

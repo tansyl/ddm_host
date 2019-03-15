@@ -1,0 +1,301 @@
+body {
+  font: 10px sans-serif;
+  color: white;
+ 
+
+}
+h1 {
+  font: 72px sans-serif;
+  width: 900px;
+  color: white;
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1000px;
+  background-color: rgba(0,0,0,0.7);
+  margin-top: 300px;
+  margin-bottom: 30px;
+
+}
+
+h3 {
+  font: 16px sans-serif;
+  width: 740px;
+  color:white;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(0,0,0,0.7);
+  margin-bottom: 30px;
+}
+
+h4 {
+  font: 16px sans-serif;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+h5 {
+  font: 20px sans-serif;
+  color:white;
+}
+
+h6 {
+  font: 16px sans-serif;
+  color:white;
+  font-style: italic;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  background-color: rgba(0,0,0,0.7);
+  width: fit-content
+}
+
+
+
+.page1 {
+  background-image: url("../image/background3.jpg");
+  background-size: cover;
+  height: -webkit-fill-available;
+}
+
+.container {
+  width: 50px;
+  height: 500px;
+}
+
+.page2 {
+  background-image: url("../image/background2.jpg");
+  background-size: cover;
+}
+
+/*scatter plot style*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+
+/*grid area setting*/
+.item2 { grid-area: intro; }
+.item3 { grid-area: graph; }
+.item4 { grid-area: map; }
+.item5 { grid-area: footer; }
+.item6 { grid-area: scatter; }
+
+
+.container2 {
+}
+
+
+.intro {
+  font-size: 16px;
+  /*text-align: left;*/
+  background-color: rgba(0,0,0,0.7);
+}
+
+/*web page layout*/
+
+
+.grid-container2 {
+  background-color: rgba(0,0,0,0);
+  display: grid;
+  grid-template-areas:
+    'intro map'
+    'graph map'
+    'scatter map';
+  grid-template-rows:  30% 32% 32%;
+  grid-template-columns:  40% auto;
+  grid-gap: 10px;
+  padding: 10px;
+  height:100%;
+}
+
+.grid-container2 > div {
+  background-color: rgba(0,0,0,0.7);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+
+@-webkit-keyframes pulse {
+  0% { box-shadow:0 0 8px #ea4c89, inset 0 0 8px #ea4c89; }
+  50% { box-shadow:0 0 16px #ea4c89, inset 0 0 14px #ea4c89; }
+  100% { box-shadow:0 0 8px #ea4c89, inset 0 0 8px #ea4c89; }
+}
+
+
+.centroid {
+  background-color:transparent;
+  fill: rgba(255,255,0,0.5);
+  box-shadow: 0 0 8px #ea4c89, inset 0 0 8px #ea4c89;
+  -webkit-animation: pulse 2s linear 1s infinite;
+/*  animation-name: pulse_animation;*/
+}
+
+@keyframes pulse_animation {
+  0% { box-shadow:0 0 20px #ea4c89, inset 0 0 20px #ea4c89;}
+  50% { box-shadow:0 0 10px #ea4c89, inset 0 0 10px #ea4c89; transform:scale(2);}
+  100% { box-shadow:0 0 20px #ea4c89, inset 0 0 20px #ea4c89; }
+}
+
+.pulse
+{
+  animation-name: pulse_animation;
+  animation-duration: 5000ms;
+  transform-origin:70% 70%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+
+
+/*histogram*/
+
+.chart div {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #FFF;
+  shape-rendering: crispEdges;
+}
+
+
+
+.bar rect{
+  /*fill: steelblue;*/
+}
+
+.bar rect:hover {
+  /*fill: white;*/
+}
+
+.bar text {
+  fill: white;
+  font: 10px sans-serif;
+}
+.bar {
+  /*fill: orange;*/
+}
+
+.bar:hover {
+  /*fill: white ;*/
+}
+
+.x.axis path {
+  display: none;
+  stroke:#000;
+}
+
+.y.axis path {
+  stroke:#000;
+
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+
+
+/*map drawing */
+path {
+  fill: none;
+  stroke: #000;
+  stroke-width: .5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.rcorners1 {
+  background: rgba(255,255,255,0);
+  width: 53%;
+  height: 50px; 
+  border-width: 2px;
+  border-color: rgba(255,255,255,0.5);
+  border-style: solid;
+  position: relative;
+}
+
+.legends1{
+    height: 50px;
+    width: 53%;
+    position: relative;
+}
+.legendtext{
+  height: 20px;
+    width: 53%;
+    position: relative;
+    overflow: visible;
+}
+
+.diagram{
+  overflow: visible;
+  width: 80%;
+  position: relative;
+}
+
+@keyframes pulse_animation {
+ 0% { r: 1px; }
+ 50% { r: 5px; }
+ 100% { r: 10px; }
+}
+@keyframes pulse_animation_new {
+  0% { box-shadow:0 0 20px #ea4c89, inset 0 0 20px #ea4c89;}
+  50% { box-shadow:0 0 10px #ea4c89, inset 0 0 10px #ea4c89; }
+  100% { box-shadow:0 0 20px #ea4c89, inset 0 0 20px #ea4c89; }
+}
+
+
+.pulse
+{
+ animation-name: pulse_animation;
+ animation-duration: 5000ms;
+ /*transform-origin:-5px -5px;*/
+ animation-iteration-count: 10;
+ animation-timing-function: linear;
+}
+
